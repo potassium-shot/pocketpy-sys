@@ -4,6 +4,7 @@ fn main() {
 	println!("cargo:rerun-if-changed=wrapper.h");
 
 	let target = env::var("TARGET").unwrap();
+	let is_debug = env::var("DEBUG").unwrap() == "true";
 
 	// Generated the bindings
 	let bindings = bindgen::Builder::default()
@@ -43,8 +44,17 @@ fn main() {
 
 	// Add the compiled lib to the library search path of rustc
 	if target.contains("windows") {
-		// todo: test and change accordingly
-		println!("cargo:rustc-link-search=native={}/build", built.display());
+		if is_debug {
+			println!(
+				"cargo:rustc-link-search=native={}/build/Debug",
+ 				built.display()
+			);
+		} else {
+			println!(
+				"cargo:rustc-link-search=native={}/build/Release",
+				built.display()
+			);
+		}
 	} else {
 		println!("cargo:rustc-link-search=native={}/build", built.display());
 	}
