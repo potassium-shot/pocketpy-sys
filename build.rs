@@ -49,6 +49,10 @@ fn main() {
 				"cargo:rustc-link-search=native={}/build/Debug",
  				built.display()
 			);
+			println!(
+				"cargo:rustc-link-search=native={}/build/RelWithDebInfo",
+ 				built.display()
+			);
 		} else {
 			println!(
 				"cargo:rustc-link-search=native={}/build/Release",
