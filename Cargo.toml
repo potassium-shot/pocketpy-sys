@@ -2,7 +2,7 @@
 name = "pocketpy-sys"
 description = "Rust FFI bindings to pocketpy, a portable python 3.x interpreter"
 author = "Potassium-Shot"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 readme = "README.md"
 license = "MIT"
